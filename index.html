@@ -1,0 +1,148 @@
+<html>
+<head>
+	<title>Selfie Batu</title>
+	<script type="text/javascript" src="TweenMax.min.js"></script>
+	<script type="text/javascript" src="ScrollMagic.js"></script>
+	<script type="text/javascript" src="animation.gsap.js"></script>
+	<script type="text/javascript" src="debug.addIndicators.js"></script>
+	<link rel="stylesheet" href="examples.css" type="text/css">
+	<script type="text/javascript" src="examples.js"></script>
+	<script type="text/javascript" src="highlight.pack.js"></script>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="modernizr.custom.min.js"></script>
+	<link rel="stylesheet" href="normalize.css" type="text/css">
+	<link rel="stylesheet" href="style.css" type="text/css">
+</head>
+
+<body>
+<div id="imagesequence">
+	<img id="myimg" src="kareler/01.jpg"><br>
+	</div>
+<script>
+	// define images
+	var images = [
+		"kareler/00.jpg",
+		"kareler/01.jpg",
+		"kareler/02.jpg",
+		"kareler/03.jpg",
+		"kareler/04.jpg",
+		"kareler/05.jpg",
+		"kareler/06.jpg",
+		"kareler/07.jpg",
+		"kareler/08.jpg",
+		"kareler/09.jpg",
+		"kareler/10.jpg",
+		"kareler/11.jpg",
+		"kareler/12.jpg",
+		"kareler/13.jpg",
+		"kareler/14.jpg",
+		"kareler/15.jpg",
+		"kareler/16.jpg",
+		"kareler/17.jpg",
+		"kareler/18.jpg",
+		"kareler/19.jpg",
+		"kareler/20.jpg",
+		"kareler/21.jpg",
+		"kareler/22.jpg",
+		"kareler/23.jpg",
+		"kareler/24.jpg",
+		"kareler/25.jpg",
+		"kareler/26.jpg",
+		"kareler/27.jpg",
+		"kareler/28.jpg",
+		"kareler/29.jpg",
+		"kareler/30.jpg",
+		"kareler/31.jpg",
+		"kareler/32.jpg",
+		"kareler/33.jpg",
+		"kareler/34.jpg",
+		"kareler/35.jpg",
+		"kareler/36.jpg",
+		"kareler/37.jpg",
+		"kareler/38.jpg",
+		"kareler/39.jpg",
+		"kareler/40.jpg",
+		"kareler/41.jpg",
+		"kareler/42.jpg",
+		"kareler/43.jpg",
+		"kareler/44.jpg",
+		"kareler/45.jpg",
+		"kareler/46.jpg",
+		"kareler/47.jpg",
+		"kareler/48.jpg",
+		"kareler/49.jpg",
+		"kareler/50.jpg",
+		"kareler/51.jpg",
+		"kareler/52.jpg",
+		"kareler/53.jpg",
+		"kareler/54.jpg",
+		"kareler/55.jpg",
+		"kareler/56.jpg",
+		"kareler/57.jpg",
+		"kareler/58.jpg",
+		"kareler/59.jpg",
+		"kareler/60.jpg",
+		"kareler/61.jpg",
+		"kareler/62.jpg",
+		"kareler/63.jpg",
+		"kareler/64.jpg",
+		"kareler/65.jpg",
+		"kareler/66.jpg",
+		"kareler/67.jpg",
+		"kareler/68.jpg",
+		"kareler/69.jpg",
+		"kareler/70.jpg",
+		"kareler/71.jpg",
+		"kareler/72.jpg",
+		"kareler/73.jpg",
+		"kareler/74.jpg",
+		"kareler/75.jpg",
+		"kareler/76.jpg",
+		"kareler/77.jpg",
+		"kareler/78.jpg",
+		"kareler/79.jpg",
+		"kareler/80.jpg",
+		"kareler/81.jpg",
+		"kareler/82.jpg",
+		"kareler/83.jpg",
+		"kareler/84.jpg",
+		"kareler/85.jpg"
+		
+	];
+
+	// TweenMax can tween any property of any object. We use this object to cycle through the array
+	var obj = {curImg: 0};
+
+	// create tween
+	var tween = TweenMax.to(obj, 0.5,
+		{
+			curImg: images.length - 1,	// animate propery curImg to number of images
+			roundProps: "curImg",				// only integers so it can be used as an array inex
+			immediateRender: true,			// load first image automatically
+			ease: Linear.easeNone,			// show every image the same ammount of time
+			onUpdate: function () {
+			  $("#myimg").attr("src", images[obj.curImg]); // set the image source
+			}
+		}
+	);
+
+	// init controller
+	var controller = new ScrollMagic.Controller();
+
+	// build scene
+	var scene = new ScrollMagic.Scene({triggerElement: "#trigger", duration: 300})
+					.setTween(tween)
+					.addIndicators() // add indicators (requires plugin)
+					.addTo(controller);
+
+	// handle form change
+	$("form.move input[name=duration]:radio").change(function () {
+		scene.duration($(this).val());
+	});
+</script>
+<audio autoplay loop="loop">
+  <source src="a.mp3" type="audio/mpeg">
+</audio>
+</body>
+</html>
+
